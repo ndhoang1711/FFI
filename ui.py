@@ -94,6 +94,11 @@ cb_name = tk.Checkbutton(choose_frame, text="Interfaces Lan 2",
                          variable=var_lan2, onvalue=1, offvalue=0)
 cb_name.place(rely=0.3, relx=0.1)
 
+var_type = tk.IntVar()
+cb_name = tk.Checkbutton(choose_frame, text="Type of Router",
+                         variable=var_type, onvalue=1, offvalue=0)
+cb_name.place(rely=0.3, relx=0.2)
+
 # tao treeview hiển thị thông tin sau khi xử lý
 tv1 = ttk.Treeview(frame1)
 tv1.place(relheight=1, relwidth=1)
@@ -156,6 +161,7 @@ def process_data():
     MD = process.MODEL_DEVICE(interfaces,var_model.get())
     SN = process.SERIAL_DEVICE(interfaces, var_serial.get())
     WANI = process.WAN_INT(interfaces, var_wan.get())
+    TYPE = process.TYPE_ROUTER(interfaces, var_type.get())
 
 
     #####Tao bien luu heading#########
@@ -168,7 +174,8 @@ def process_data():
             "LAN INTERFACE": LANI,
             "CROSS INTERFACE": CROSSI,
             "SERIAL NUMBER": SN,
-            "DEVICE MODEL": MD}
+            "DEVICE MODEL": MD,
+            "TYPE OF ROUTER": TYPE}
     df = pd.DataFrame.from_dict(data, orient='index')
     df = df.transpose()
     file_path = label_file["text"]

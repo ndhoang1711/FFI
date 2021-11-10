@@ -128,3 +128,16 @@ def WAN_INT(interfaces, check):
         WAN.append("")
     WAN.pop(0)
     return WAN
+
+def TYPE_ROUTER(interfaces, check):
+    TYPE = []
+    if check == 1:
+        for i in interfaces:
+            if ("Instance: eoi-280005") in i:
+                RouterType = "Type 3-2"
+                TYPE.append(RouterType)
+            if ("Instance: eoi-280005") not in i:
+                RouterType = "Type 3-1"
+                TYPE.append(RouterType)
+    TYPE.pop(0)
+    return TYPE
