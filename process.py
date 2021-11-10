@@ -1,7 +1,14 @@
 import re
 import pandas as pd
 
-
+def listToString(s):
+    str1 = "" 
+     
+    for ele in s: 
+        str1 += ele  
+    
+    # return string  
+    return str1 
 
 def CROSS_INT(interfaces, check):
     CROSS = []
@@ -16,10 +23,10 @@ def CROSS_INT(interfaces, check):
                         cross = re.findall("^[^ .]*", m)
                         CROSS.append(cross)
 
-        CROSS.pop(0)
+        #CROSS.pop(0)
     else:
          CROSS.append("") 
-    CROSS
+    CROSS.pop(0)
     return CROSS
 
 def DEVICE_NAME(interfaces, check):
@@ -39,19 +46,11 @@ def DEVICE_NAME(interfaces, check):
                     if ("failed") in m:
                         dname = re.findall("(\S+)", m)
                         DNAME.append(dname[0])
+        #DNAME.pop(0)
     else:
         DNAME.append("")
     return DNAME
 
-
-def listToString(s):
-    str1 = "" 
-     
-    for ele in s: 
-        str1 += ele  
-    
-    # return string  
-    return str1 
 
 def LAN_INT(interfaces, check):
     LAN = []
